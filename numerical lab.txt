@@ -1,0 +1,518 @@
+1.bisection m.
+#include<bits/stdc++.h>
+using namespace std;
+int d,de;
+double n,m,x,z,sum,a,b,c;
+int arr[20];
+double fun(double x)
+{
+     sum=0;
+    int i,z=de;
+    for(i=0;i<=de;i++){
+        sum+=arr[i]*pow(x,z);
+        z--;
+    }
+    return sum;
+}
+
+int main()
+{
+   cout<<"Enter degree: "<<endl;
+   cin>>de;
+   cout<<"Enter co_efficient: "<<endl;
+   for(int i=0;i<=de;i++){
+    cin>>arr[i];
+   }
+   cout<<"Enter two numbers: "<<endl;
+   cin>>m>>n;
+   while(fun(m)*fun(n)>=0){
+    cout<<"Error,";
+    cout<<"Please enter new value: "<<endl;
+    cin>>m>>n;
+   }
+   if(fun(m)<0)
+    swap(m,n);
+   double d1,d2;
+   while(1){
+    x=(m+n)/2;
+   d1=fun(x);
+   b=d1;
+   b=abs(b*1000);
+   if(b>=0 && b<=9){
+   break;
+   }
+    if(d1>0)
+        m=x;
+    else
+        n=x;
+
+   }
+   cout<<"the root is: "<<x<<endl;
+   return 0;
+}
+
+2. false position m.
+#include<bits/stdc++.h>
+using namespace std;
+int a,b,c,de;
+double n,m,x,z,sum;
+int arr[20];
+double fun(double x)
+{
+    sum=0;
+    int i,z=de;
+    for(i=0; i<=de; i++)
+    {
+        sum+=arr[i]*pow(x,z);
+        z--;
+    }
+    return sum;
+}
+
+int main()
+{
+    cout<<"Enter degree: "<<endl;
+    cin>>de;
+    cout<<"Enter co_efficient: "<<endl;
+    for(int i=0; i<=de; i++)
+    {
+        cin>>arr[i];
+    }
+    cout<<"Enter two numbers: "<<endl;
+    cin>>m>>n;
+    while(fun(m)*fun(n)>=0)
+    {
+        cout<<"Error"<<endl;
+        cout<<"Please enter new value: "<<endl;
+        cin>>m>>n;
+    }
+    if(fun(m)<0)
+        swap(m,n);
+    double d1,b;
+    while(1)
+    {
+        double k=(fun(m))/(fun(m)-fun(n));
+        x=m-k*(m-n);
+        d1=fun(x);
+        cout<<"d1 : "<<d1<<" x : "<<x<<endl;
+        b=d1;
+        b=b*1000;
+        b=abs(b);
+        if(b>=0 && b<=9)
+        {
+            break;
+        }
+        if(d1>0)
+            m=x;
+        else
+            n=x;
+    }
+    cout<<"the root is: "<<x<<endl;
+    return 0;
+}
+/*
+4
+1 0 0 -5 -11
+2 3
+3
+1 0 -5 -5
+2 3
+
+*/
+
+
+3. neton r.m.
+#include<bits/stdc++.h>
+using namespace std;
+double a,b,c,d,d1,d2;
+double n,m,x,y,z1,z2,sum;
+int arr1[20],arr2[20];
+double fun1(double x)
+{
+     sum=0;
+    int i,z1=d1;
+    for(i=0;i<=d1;i++){
+        sum+=arr1[i]*pow(x,z1);
+        z1--;
+    }
+    return sum;
+}
+    double fun2(double x)
+{
+     sum=0;
+    int i,z2=d1;
+    for(i=0;i<d1;i++){
+        sum+=arr2[i]*pow(x,z2);
+        z2--;
+    }
+    return sum;
+}
+void diff()
+{
+    int i,j,zn=d1;
+    for(i=0;i<d1;i++){
+        arr2[i]=zn*arr1[i];
+        zn--;
+    }
+}
+int main()
+{
+   cout<<"Enter degree: "<<endl;
+   cin>>d1;
+   cout<<"Enter co_efficient: "<<endl;
+   for(int i=0;i<=d1;i++){
+    cin>>arr1[i];
+   }
+   diff();
+   for(int i=0;i<d1;i++){
+    cout<<arr2[i]<<" ";
+   }
+   cout<<endl;
+   cout<<"Enter one numbers: "<<endl;
+   cin>>n;
+   while(fun1(n)*fun2(n)>=0){
+    cout<<"Error,";
+    cout<<"Please enter new value: "<<endl;
+    cin>>n;
+   }
+   while(1){
+    x=n-(fun1(n)/fun2(n));
+    b=fun1(x);
+    //cout<<"x : "<<x<<" b : "<<b<<endl;
+   b=abs(b*10000);
+    if(b>=0 && b<=9){
+   break;
+   }
+   n=x;
+   }
+   cout<<"the root is: "<<x<<endl;
+   return 0;
+}
+/*
+4
+1 0 0 -5 -11
+2
+3
+1 0 -5 -5
+2
+*/
+
+4. g. newton r.m.
+#include<bits/stdc++.h>
+using namespace std;
+int d,d1,d2;
+double n,m,x1,x2,x,y,z1,z2,sum,a,b,c;
+int arr1[20],arr2[20];
+double fun1(double x)
+{
+     sum=0;
+    int i,z1=d1;
+    for(i=0;i<=d1;i++){
+        sum+=arr1[i]*pow(x,z1);
+        z1--;
+    }
+    return sum;
+}
+    double fun2(double x)
+{
+     sum=0;
+    int i,z2=d1;
+    for(i=0;i<d1;i++){
+        sum+=arr2[i]*pow(x,z2);
+        z2--;
+    }
+    return sum;
+}
+void diff()
+{
+    int i,j,zn=d1;
+    for(i=0;i<d1;i++){
+        arr2[i]=zn*arr1[i];
+        zn--;
+    }
+}
+
+int main()
+{
+   cout<<"Enter degree: "<<endl;
+   cin>>d1;
+   cout<<"Enter co_efficient: "<<endl;
+   for(int i=0;i<=d1;i++){
+    cin>>arr1[i];
+   }
+   diff();
+   for(int i=0;i<d1;i++){
+    cout<<arr2[i]<<" ";
+   }
+   cout<<endl;
+   cout<<"Enter one numbers: "<<endl;
+   cin>>n;
+   while(fun1(n)*fun2(n)>=0){
+    cout<<"Error,";
+    cout<<"Please enter new value: "<<endl;
+    cin>>n;
+   }
+   while(1){
+    x1=n-2*(fun1(n)/fun2(n));
+    x2=n-1*(fun1(n)/fun2(n));
+    if(x1>x2)
+        x=x2;
+    else
+        x=x1 ;
+     b=fun1(x);
+   b=abs(b*1000);
+    if(b>=0 && b<=9){
+   break;
+   }
+   n=x;
+   }
+   cout<<"the root is: "<<x<<endl;
+   return 0;
+}
+/*
+4
+1 0 0 -5 -11
+2
+3
+1 0 -5 -5
+2
+*/
+
+
+5. secant method
+#include<bits/stdc++.h>
+using namespace std;
+int d,de;
+double n,m,x,z,sum,a,b,c;
+int arr[20];
+double fun(double x)
+{
+     sum=0;
+    int i,z=de;
+    for(i=0;i<=de;i++){
+        sum+=arr[i]*pow(x,z);
+        z--;
+    }
+    return sum;
+}
+
+int main()
+{
+   cout<<"Enter degree: "<<endl;
+   cin>>de;
+   cout<<"Enter co_efficient: "<<endl;
+   for(int i=0;i<=de;i++){
+    cin>>arr[i];
+   }
+   cout<<"Enter two numbers: "<<endl;
+   cin>>m>>n;
+   while(fun(m)*fun(n)>=0){
+    cout<<"Error,";
+    cout<<"Please enter new value: "<<endl;
+    cin>>m>>n;
+   }
+   if(fun(m)<0)
+   swap(m,n);
+   double d1,d2;
+   while(1){
+    d2=(fun(n)*(n-m))/(fun(n)-fun(m));
+    x=n-d2;
+   d1=fun(x);
+   //cout<<"x  : "<<x<<" d1 : "<<d1<<endl;
+   b=d1;
+   b=abs(b*1000);
+   if(b>=0 && b<=9){
+   break;
+   }
+   m=n;
+   n=x;
+   }
+   cout<<"the root is: "<<x<<endl;
+   return 0;
+}
+/*
+4
+1 0 0 -8 6
+0 1
+
+*/
+
+
+
+6. newton forward difference interpolation
+#include<bits/stdc++.h>
+using namespace std;
+
+double x[100],y[100],d1[100],d2[100],d3[100],d4[100],d5[100],p;
+
+double fun(void)
+{
+    double sum;
+    sum=y[0]+p*d1[0]+p*(p-1)*d2[0]*(1/2.0)+p*(p-1)*(p-2)*d3[0]*(1/6.0)+p*(p-1)*(p-2)*(p-3)*d4[0]*(1/24.0)+p*(p-1)*(p-2)*(p-3)*(p-4)*d5[0]*(1/120.0);
+    return sum;
+}
+
+int main()
+{
+    int i,n;
+    double iv,dv;
+
+    cout<<"Enter the number of input set(x & y)[Maximum 6 set]:"<<endl;
+    cin>>n;
+
+    cout<<"Enter the value of x & y respectively:"<<endl;
+    for(i=0; i<n; i++)
+        cin>>x[i]>>y[i];
+
+    for(i=0; i<n-1; i++)
+        d1[i]=y[i+1]-y[i];
+    for(i=0; i<n-2; i++)
+        d2[i]=d1[i+1]-d1[i];
+    for(i=0; i<n-3; i++)
+        d3[i]=d2[i+1]-d2[i];
+    for(i=0; i<n-4; i++)
+        d4[i]=d3[i+1]-d3[i];
+    for(i=0; i<n-5; i++)
+        d5[i]=d4[i+1]-d4[i];
+
+    cout<<"Enter the desired value of x:"<<endl;
+    cin>>iv;
+
+    p=(iv-x[0])/abs(x[1]-x[0]);
+    dv=fun();
+
+    cout<<"y("<<iv<<")="<<dv<<endl;
+    return 0;
+}
+/*
+5
+1971 7
+1981 8.3
+1991 10.6
+2001 12.9
+2011 15.6
+*/
+7. numerical differentiation 
+#include<bits/stdc++.h>
+using namespace std;
+double x[10], y[10], d1[10], d2[10], d3[10], d4[10], d5[10], d6[10], h, r, ans1, ans2;
+int main()
+{
+    int i, j, k, n;
+    cout <<" enter value n: "<<endl;
+    cin >> n;
+    cout << "enter x & y: "<< endl;
+    for(i = 0; i < n; i++)
+    {
+        cin >> x[i] >> y[i];
+    }
+    for(i = 0; i < n - 1; i++)
+    {
+        d1[i] = y[i + 1] - y[i];
+    }
+    for(i = 0; i < n - 2; i++)
+    {
+        d2[i] = d1[i + 1] - d1[i];
+    }
+    for(i = 0; i < n - 3; i++)
+    {
+        d3[i] = d2[i + 1] - d2[i];
+    }
+    for(i = 0; i < n - 4; i++)
+    {
+        d4[i] = d3[i + 1] - d3[i];
+    }
+    for(i = 0; i < n - 5; i++)
+    {
+        d5[i] = d4[i + 1] - d4[i];
+    }
+    for(i = 0; i < n - 6; i++)
+    {
+        d6[i] = d5[i + 1] - d5[i];
+    }
+    h = x[1] - x[0];
+    cout << h << endl;
+    ans1 = (1 / h) * (d1[0] - (1 / 2) * d2[0] - (1/4) * d4[0] - (1 / 6)* d6[0]);
+    ans2 = (1/ (h * h)) * (d2[0] - d3[0] + (11 / 12) * d4[0] + (137 / 180) * d6[0]);
+    printf("(dy / dx) : ");
+    cout << ans1 << endl;
+    printf("(d2y / dx2) : ");
+    cout << ans2 << endl;
+    return 0;
+}
+/*
+5
+1.0 2.71
+1.2 3.92
+1.4 4.22
+1.6 5.19
+1.8 6.39
+7
+1.0 2.71
+1.2 3.32
+1.4 4.05
+1.6 4.95
+1.8 6.05
+2.0 7.38
+2.2 9.02
+*/
+8. numerical integration
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+    int n,i;
+    double a,b,h,sum=0,integral;
+    cout<<"Enter, n=";
+    cin>>n;
+    double x[n+1],y[n+1];
+    for (i=0;i<n;i++)
+    {
+       cin>>x[i];
+    }
+    h=x[1]-x[0];
+    for (i=0;i<n;i++)
+    {
+       cin>>y[i];
+    }
+
+    for (i=1;i<n-1;i++)
+    {
+        sum=sum+y[i];
+    }
+    integral=h/2.0*(y[0]+2*sum+y[n-1]);
+    cout<<"The definite integral  is "<<integral<<endl;
+    double sum1=0,sum2=0,integral1;
+     for (i=1;i<n-1;i=i+2)
+    {
+       sum1=sum1+y[i];
+    }
+     for (i=2;i<n-1;i=i+2)
+    {
+       sum2=sum2+y[i];
+    }
+    integral1=h/3.0*(y[0]+4*sum1+2*sum2+y[n-1]);
+    cout<<"The definite integral  is "<<integral1<<endl;
+    double sum3=0,sum4=0,integral2;
+    int c=0;
+     for (i=1;i<n-1;i=i++)
+    {
+        c++;
+        if(c<3)
+       sum3=sum3+y[i];
+       else{
+        sum4=sum4+y[i];
+        c=0;
+       }
+    }
+     integral2=((3*h)/8.0)*(y[0]+3*sum3+2*sum4+y[n-1]);
+    cout<<"The definite integral  is "<<integral2<<endl;
+    return 0;
+}
+/*
+6
+7.47 7.48 7.49 7.50 7.51 7.52
+1.93 1.95 1.97 2.01 2.03 2.06
+*/
+
